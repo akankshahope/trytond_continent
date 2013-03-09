@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<tryton>
+    <data>
+        <record model="ir.ui.view" id="continent_view_form">
+            <field name="model">continent.continent</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <![CDATA[
+                <form string="Continent">
+                    <label name="name"/>
+                    <field name="name"/>
+                    <label name="code"/>
+                    <field name="code"/>
+                </form>
+                ]]>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="continent_view_tree">
+            <field name="model">continent.continent</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <![CDATA[
+                <tree string="Continent">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+                ]]>
+            </field>
+        </record>
+        
+        <record model="ir.action.act_window" id="act_continent_form">
+            <field name="name">Continent</field>
+            <field name="res_model">continent.continent</field>
+        </record>
+        
+        <record model="ir.action.act_window.view" id="act_continent_form_view1">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="continent_view_tree"/>
+            <field name="act_window" ref="act_continent_form"/>
+        </record>
+       
+        <record model="ir.action.act_window.view" id="act_continent_form_view2">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="continent_view_form"/>
+            <field name="act_window" ref="act_continent_form"/>
+        </record>
+
+         <menuitem parent="ir.menu_administration" action="act_continent_form"
+            id="menu_continent_form"/>
+        <record model="ir.ui.menu-res.group"
+            id="menu_continent_form_group_admin">
+            <field name="menu" ref="menu_continent_form"/>
+            <field name="group" ref="res.group_admin"/>
+        </record>
+    </data>
+    <data skiptest="1">
+
+        <!--
+        Output of scripts/continent.py
+        -->
+
+        <record model="continent.continent" id="asi">
+            <field name="name">Asia</field>
+            <field name="code">ASI</field>
+        </record>
+
+        <record model="continent.continent" id="afr">
+            <field name="name">Africa</field>
+            <field name="code">AFR</field>
+        </record>
+
+        <record model="continent.continent" id="nam">
+            <field name="name">North America</field>
+            <field name="code">NAM</field>
+        </record>
+        
+        <record model="continent.continent" id="sam">
+            <field name="name">South America</field>
+            <field name="code">SAM</field>
+        </record>
+
+        <record model="continent.continent" id="ant">
+            <field name="name">Antartica</field>
+            <field name="code">ANT</field>
+        </record>
+
+        <record model="continent.continent" id="euo">
+            <field name="name">Europe</field>
+            <field name="code">EUO</field>
+        </record>
+
+        <record model="continent.continent" id="aus">
+            <field name="name">Australia</field>
+            <field name="code">AUS</field>
+        </record>
+        
+        <!--
+        End of Output of scripts/continent.py
+        -->
+
+        <record model="ir.model.access" id="access_continent">
+            <field name="model" search="[('model', '=', 'continent.continent')]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+        <record model="ir.model.access" id="access_continent_admin">
+            <field name="model" search="[('model', '=', 'continent.continent')]"/>
+            <field name="group" ref="res.group_admin"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+    </data>    
+</tryton>
+
+
+
+
+
+
+
+
+            
+
